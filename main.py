@@ -1,6 +1,6 @@
 import sys
 import base64
-import random
+import random,time
 import os
 from io import BytesIO
 
@@ -55,7 +55,70 @@ class RandomCall(QWidget):
         self.setWindowTitle("")
         self.setGeometry(300, 300, 400, 280)
         self.setFixedSize(self.size())
-        self.setStyleSheet("background-color: white")
+        self.setStyleSheet(
+        '''
+        QWidget {
+            background-color: white;
+        }
+
+        QLabel {
+            font-family: "黑体";
+            font-size: 40px;
+            font-weight: bold;
+            color: black;
+            qproperty-alignment: "AlignCenter";
+        }
+
+        QCheckBox {
+            font-family: "Microsoft YaHei UI";
+            font-size: 16px;
+        }
+
+        QPushButton {
+            background-color: #A5D6A7;
+            height: 40px;
+            width: 100px;
+            border-radius: 13px;
+            font-family: "Microsoft YaHei UI";
+            font-size: 20px;
+            color: white;
+        }
+
+        QPushButton:hover {
+            background-color: #81c784;
+        }
+
+        QPushButton:pressed {
+            background-color: #66bb6a;
+        }
+
+        QMenuBar {
+            background-color: white;
+        }
+
+        QMenu {
+            background-color: white;
+        }
+
+        QMenuBar::item {
+            spacing: 3px;
+            padding: 2px 10px;
+            background-color: transparent;
+        }
+
+        QMenuBar::item:selected {
+            background-color: #e0e0e0;
+        }
+
+        QMenu::item {
+            padding: 2px 20px;
+        }
+
+        QMenu::item:selected {
+            background-color: #e0e0e0;
+        }
+        '''
+        )
 
         # 设置窗口图标
         #self.setWindowIcon(QIcon("icon.ico"))
@@ -74,18 +137,12 @@ class RandomCall(QWidget):
         # 按钮
         self.call_button = QPushButton("点名", self)
         self.call_button.setFont(QFont("黑体", 20))
-        self.call_button.setStyleSheet(
-            '''
-                QPushButton {
-                    background-color: #A5D6A7;
-                    border-radius: 13px;
-                    }            
-            ''')
+        
         self.call_button.clicked.connect(self.start)
 
         self.reset_button = QPushButton("重置", self)
         self.reset_button.setFont(QFont("黑体", 20))
-        self.reset_button.setStyleSheet("background-color: #A5D6A7")
+        #self.reset_button.setStyleSheet("background-color: #A5D6A7")
         self.reset_button.clicked.connect(self.reset)
 
         # 布局
@@ -133,7 +190,7 @@ class RandomCall(QWidget):
         status_text = load_default_file()
         if status_text:
             self.status_label.setText(status_text)
-
+    
     def start(self):
         if not name_list:
             if called_name_list:
@@ -141,16 +198,26 @@ class RandomCall(QWidget):
             else:
                 self.status_label.setText("名单为空")
             return
+        def show():
+            global rmname
+            nl=name_list.copy()
+            name=random.choice(nl)
+            self.status_label.setText(name)
+            rmname=name
+            QApplication.processEvents()
+        for _ in range(10): 
+            #self.status_label.setText(name)
+            '''t=QTimer(self)
+            t.timeout.connect(show)
+            t.start(300)'''
+            show()
+        #t.stop()
         if not self.allow_repeat_checkbox.isChecked():
-            random.shuffle(name_list)
-            self.status_label.setText(name_list[0])
-            called_name_list.append(name_list[0])
-            name_list.remove(name_list[0])
+            called_name_list.append(rmname)
             if not name_list:
                 self.status_label.setText("名单已用完")
-        else:
-            random.shuffle(name_list)
-            self.status_label.setText(name_list[0])
+            else:
+                name_list.remove(rmname)
 
     def reset(self):
         global name_list, called_name_list
@@ -192,11 +259,13 @@ class RandomCall(QWidget):
             "Forked改编仓库：github.com/EricDing618/RandomCall")
 
 if __name__ == '__main__':
+    QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(sys.argv)
     win = QMainWindow()
     win.setWindowTitle("随机点名器")
     win.setGeometry(300, 300, 400, 280)
-    QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    win.setFixedSize(win.size())
+    #win.setWindowFlag(Qt.WindowType.WindowMaximizeButtonHint,False)
     win.setStyleSheet("background-color: white")
 
     # 设置窗口图标
