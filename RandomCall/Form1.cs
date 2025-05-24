@@ -19,11 +19,67 @@ namespace RandomCall
     public partial class Form1 : Form
     {
         IWorkbook nameList = null;
-        List<string[]> excelData = new List<string[]>(); // 初始化动态数组
+        string file = "list.xlsx"; // 选中的文件路径
+        bool enableRepeat = false; // 是否允许重复点名
+        List<string[]> excelData = new List<string[]>(); // 初始化导入的名单
+        List<string[]> callData = new List<string[]>(); // 初始化已点名名单
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                excelData = ReadExcel(file); // 读取默认名单文件
+                label2.Text = "已加载名单: " + excelData.Count.ToString() + "人"; // 更新标签文本
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("未找到默认名单文件，请手动导入", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                label1.Text = "请导入名单"; // 更新标签文本
+                label2.Text = "未加载名单"; // 更新标签文本
+            }
+        }
+
+        private void 查看名单ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder(); // 创建一个StringBuilder对象用于拼接字符串
+            foreach (string[] row in excelData) // 遍历动态数组中的每一行
+            {
+                foreach (string cell in row) // 遍历每一行中的每个单元格
+                {
+                    sb.Append(cell + ", "); // 将单元格内容添加到StringBuilder中，并用制表符分隔
+                }
+            }
+            MessageBox.Show(sb.ToString(), "导入的名单");
+        }
+
+        private void 已点名ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (enableRepeat)
+            {
+                MessageBox.Show("允许重复点名已开启", "已点名名单", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (callData == null)
+            {
+                MessageBox.Show("没有已点名名单", "已点名名单", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder(); // 创建一个StringBuilder对象用于拼接字符串
+            foreach (string[] row in callData) // 遍历动态数组中的每一行
+            {
+                foreach (string cell in row) // 遍历每一行中的每个单元格
+                {
+                    sb.Append(cell + ", "); // 将单元格内容添加到StringBuilder中，并用制表符分隔
+                }
+            }
+            MessageBox.Show(sb.ToString(), "已点名名单");
         }
 
         private void 导入名单ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,14 +90,11 @@ namespace RandomCall
             fileDlg.Filter = "Excel文件 (*.xls;*.xlsx)|*.xls;*.xlsx|所有文件 (*.*)|*.*";
             if (fileDlg.ShowDialog() == DialogResult.OK)
             {
-                string file = fileDlg.FileName;
-                List<string[]> excelData = ReadExcel(file); // 调用读取方法
+                file = fileDlg.FileName;
+                excelData = ReadExcel(file); // 调用读取方法
+                label2.Text = "已加载名单: " + excelData.Count.ToString() + "人"; // 更新标签文本
                 label1.Text = "名单已导入"; // 更新标签文本
             }
-        }
-        private void 已点名ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(string.Join("\n", excelData), "已点名名单", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private List<string[]> ReadExcel(string filePath)
@@ -67,7 +120,7 @@ namespace RandomCall
             ISheet sheet = workbook.GetSheetAt(0);
 
             // 遍历行
-            for (int i = 0; i <= sheet.LastRowNum; i++)
+            for (int i = 1; i <= sheet.LastRowNum; i++)
             {
                 IRow row = sheet.GetRow(i);
                 if (row != null)
@@ -98,10 +151,73 @@ namespace RandomCall
             Application.Exit();
         }
 
+        private void 重置名单ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            excelData = ReadExcel(file);
+            callData = null;
+            label1.Text = "名单已重置";
+        }
+
+        private void 允许重复点名ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (允许重复点名ToolStripMenuItem.Checked)
+            {
+                enableRepeat = true; // 允许重复点名
+            }
+            else
+            {
+                enableRepeat = false; // 不允许重复点名
+            }
+        }
+
+        private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
             form2.ShowDialog();
+        }
+
+        private void start_btn_Click(object sender, EventArgs e)
+        {
+            if (excelData == null || excelData.Count == 0)
+            {
+                label1.Text = "名单为空"; // 更新标签文本
+                return;
+            }
+
+            Random rand = new Random(); // 创建一个随机数生成器
+            int index = -1; // 用于存储随机索引
+
+            start_btn.Text = "点名中..."; // 更新按钮文本
+            start_btn.Enabled = false; // 禁用按钮
+
+            for (int i = 0; i < 10; i++)
+            {
+                index = rand.Next(0, excelData.Count); // 随机生成索引
+                string name = excelData[index][0]; // 获取随机姓名
+                label1.Text = name; // 更新标签文本
+                label1.Refresh(); // 刷新标签以显示最新姓名
+                System.Threading.Thread.Sleep(75); // 暂停100毫秒
+            }
+
+            if (!enableRepeat) // 如果不允许重复点名
+            {
+                if (index >= 0 && index < excelData.Count)
+                {
+                    excelData.RemoveAt(index);
+                    if (index > excelData.Count) // 如果名单为空
+                    {
+                        callData.Add(excelData[index]); // 将已点名姓名添加到已点名名单
+                    }
+                }
+            }
+
+            start_btn.Text = "点名"; // 更新按钮文本
+            start_btn.Enabled = true; // 禁用按钮
         }
     }
 }

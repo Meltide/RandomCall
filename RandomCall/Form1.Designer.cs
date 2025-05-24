@@ -33,24 +33,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.查看名单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.已点名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入名单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.退出ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.允许重复点名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.重置名单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.允许重复点名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // start_btn
             // 
+            this.start_btn.BackColor = System.Drawing.Color.LightGreen;
+            this.start_btn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.start_btn.FlatAppearance.BorderSize = 0;
             resources.ApplyResources(this.start_btn, "start_btn");
             this.start_btn.Name = "start_btn";
-            this.start_btn.UseVisualStyleBackColor = true;
+            this.start_btn.UseVisualStyleBackColor = false;
+            this.start_btn.Click += new System.EventHandler(this.start_btn_Click);
             // 
             // label1
             // 
@@ -72,12 +78,19 @@
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.查看名单ToolStripMenuItem,
             this.已点名ToolStripMenuItem,
             this.导入名单ToolStripMenuItem,
             this.退出ToolStripMenuItem,
             this.退出ToolStripMenuItem1});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             resources.ApplyResources(this.文件ToolStripMenuItem, "文件ToolStripMenuItem");
+            // 
+            // 查看名单ToolStripMenuItem
+            // 
+            this.查看名单ToolStripMenuItem.Name = "查看名单ToolStripMenuItem";
+            resources.ApplyResources(this.查看名单ToolStripMenuItem, "查看名单ToolStripMenuItem");
+            this.查看名单ToolStripMenuItem.Click += new System.EventHandler(this.查看名单ToolStripMenuItem_Click);
             // 
             // 已点名ToolStripMenuItem
             // 
@@ -109,6 +122,13 @@
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             resources.ApplyResources(this.设置ToolStripMenuItem, "设置ToolStripMenuItem");
             // 
+            // 允许重复点名ToolStripMenuItem
+            // 
+            this.允许重复点名ToolStripMenuItem.CheckOnClick = true;
+            this.允许重复点名ToolStripMenuItem.Name = "允许重复点名ToolStripMenuItem";
+            resources.ApplyResources(this.允许重复点名ToolStripMenuItem, "允许重复点名ToolStripMenuItem");
+            this.允许重复点名ToolStripMenuItem.Click += new System.EventHandler(this.允许重复点名ToolStripMenuItem_Click);
+            // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -121,6 +141,7 @@
             // 
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
             resources.ApplyResources(this.帮助ToolStripMenuItem, "帮助ToolStripMenuItem");
+            this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem1
             // 
@@ -132,16 +153,19 @@
             // 
             this.重置名单ToolStripMenuItem.Name = "重置名单ToolStripMenuItem";
             resources.ApplyResources(this.重置名单ToolStripMenuItem, "重置名单ToolStripMenuItem");
+            this.重置名单ToolStripMenuItem.Click += new System.EventHandler(this.重置名单ToolStripMenuItem_Click);
             // 
-            // 允许重复点名ToolStripMenuItem
+            // label2
             // 
-            this.允许重复点名ToolStripMenuItem.Name = "允许重复点名ToolStripMenuItem";
-            resources.ApplyResources(this.允许重复点名ToolStripMenuItem, "允许重复点名ToolStripMenuItem");
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label2.Name = "label2";
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.start_btn);
             this.Controls.Add(this.menuStrip1);
@@ -150,6 +174,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -173,6 +198,8 @@
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 重置名单ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 允许重复点名ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查看名单ToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
     }
 }
 
