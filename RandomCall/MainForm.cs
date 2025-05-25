@@ -16,7 +16,7 @@ using NPOI.HSSF.UserModel;
 
 namespace RandomCall
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         IWorkbook nameList = null;
         string file = "list.xlsx"; // 选中的文件路径
@@ -24,7 +24,7 @@ namespace RandomCall
         List<string[]> excelData = new List<string[]>(); // 初始化导入的名单
         List<string[]> callData = new List<string[]>(); // 初始化已点名名单
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -177,7 +177,7 @@ namespace RandomCall
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            AboutForm form2 = new AboutForm();
             form2.ShowDialog();
         }
 
