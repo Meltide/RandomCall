@@ -163,7 +163,13 @@ namespace RandomCall
 
         private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(@"- 程序会尝试加载默认文件 `list.xlsx`
+- 如果未找到默认文件，请点击“文件 -> 导入”选择名单文件
+- 可以选择是否允许重复点名
+- 点击“点名”按钮进行随机点名
+- 点击“重置”按钮清空已点名名单
+- 点击“文件 -> 已点名名单”查看已点名名单
+", "使用说明");
         }
 
         private void 关于ToolStripMenuItem1_Click(object sender, EventArgs e)
