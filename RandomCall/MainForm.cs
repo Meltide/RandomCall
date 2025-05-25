@@ -27,6 +27,10 @@ namespace RandomCall
         public MainForm()
         {
             InitializeComponent();
+
+            // 启用自动缩放
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleDimensions = new SizeF(96F, 96F); // 基于标准 DPI (96 DPI)
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,19 +48,6 @@ namespace RandomCall
             }
         }
 
-        private void 查看名单ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            StringBuilder sb = new StringBuilder(); // 创建一个StringBuilder对象用于拼接字符串
-            foreach (string[] row in excelData) // 遍历动态数组中的每一行
-            {
-                foreach (string cell in row) // 遍历每一行中的每个单元格
-                {
-                    sb.Append(cell + ", "); // 将单元格内容添加到StringBuilder中，并用制表符分隔
-                }
-            }
-            MessageBox.Show(sb.ToString(), "导入的名单");
-        }
-
         private void 已点名ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (enableRepeat)
@@ -65,7 +56,7 @@ namespace RandomCall
                 return;
             }
 
-            if (callData == null)
+            if (callData.Count < 1)
             {
                 MessageBox.Show("没有已点名名单", "已点名名单", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -208,16 +199,19 @@ namespace RandomCall
             {
                 if (index >= 0 && index < excelData.Count)
                 {
+                    // 保存选中的元素
+                    string[] selected = excelData[index];
+
+                    // 移除选中的元素
                     excelData.RemoveAt(index);
-                    if (index > excelData.Count) // 如果名单为空
-                    {
-                        callData.Add(excelData[index]); // 将已点名姓名添加到已点名名单
-                    }
+
+                    // 将选中的元素添加到已点名名单
+                    callData.Add(selected);
                 }
             }
 
             start_btn.Text = "点名"; // 更新按钮文本
-            start_btn.Enabled = true; // 禁用按钮
+            start_btn.Enabled = true; // 启用按钮
         }
     }
 }

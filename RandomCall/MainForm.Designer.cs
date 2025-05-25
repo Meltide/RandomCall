@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查看名单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.已点名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.导入名单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -52,6 +51,7 @@
             // 
             this.start_btn.BackColor = System.Drawing.Color.LightGreen;
             this.start_btn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.start_btn.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.start_btn.FlatAppearance.BorderSize = 0;
             resources.ApplyResources(this.start_btn, "start_btn");
             this.start_btn.Name = "start_btn";
@@ -78,19 +78,12 @@
             // 文件ToolStripMenuItem
             // 
             this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.查看名单ToolStripMenuItem,
             this.已点名ToolStripMenuItem,
             this.导入名单ToolStripMenuItem,
             this.退出ToolStripMenuItem,
             this.退出ToolStripMenuItem1});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             resources.ApplyResources(this.文件ToolStripMenuItem, "文件ToolStripMenuItem");
-            // 
-            // 查看名单ToolStripMenuItem
-            // 
-            this.查看名单ToolStripMenuItem.Name = "查看名单ToolStripMenuItem";
-            resources.ApplyResources(this.查看名单ToolStripMenuItem, "查看名单ToolStripMenuItem");
-            this.查看名单ToolStripMenuItem.Click += new System.EventHandler(this.查看名单ToolStripMenuItem_Click);
             // 
             // 已点名ToolStripMenuItem
             // 
@@ -198,7 +191,6 @@
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 重置名单ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 允许重复点名ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 查看名单ToolStripMenuItem;
         private System.Windows.Forms.Label label2;
     }
 }
