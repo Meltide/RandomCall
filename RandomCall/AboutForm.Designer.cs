@@ -38,12 +38,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, 13);
+            this.label1.Location = new System.Drawing.Point(5, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 53);
+            this.label1.Size = new System.Drawing.Size(283, 52);
             this.label1.TabIndex = 0;
             this.label1.Text = "RandomCall";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.DoubleClick += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -66,7 +66,7 @@
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "版本 1.0\n\n作者: Github@Meltide\n开源地址: https://github.com/Meltide/RandomCall";
             // 
-            // Form2
+            // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,7 +80,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.Name = "Form2";
+            this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "关于";
             this.ResumeLayout(false);

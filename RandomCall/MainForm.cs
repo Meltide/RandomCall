@@ -56,7 +56,7 @@ namespace RandomCall
                 return;
             }
 
-            if (callData.Count < 1)
+            if (callData.Count == 0)
             {
                 MessageBox.Show("没有已点名名单", "已点名名单", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -145,7 +145,7 @@ namespace RandomCall
         private void 重置名单ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelData = ReadExcel(file);
-            callData = null;
+            callData.Clear();
             label1.Text = "名单已重置";
         }
 
