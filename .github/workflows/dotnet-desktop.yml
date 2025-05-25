@@ -20,13 +20,13 @@ jobs:
         dotnet-version: '7.0.x'  # 请根据你的项目实际版本调整
 
     - name: Restore dependencies
-      run: dotnet restore RandomCall.sln
+      run: dotnet restore RandomCall-NET.sln
 
     - name: Build RandomCall
-      run: dotnet build RandomCall.sln --configuration Release --no-restore
+      run: dotnet build RandomCall-NET.sln --configuration Release --no-restore
 
     - name: Test Output
-      run: dotnet test RandomCall.sln --no-restore --verbosity normal
+      run: dotnet test RandomCall-NET.sln --no-restore --verbosity normal
 
     - name: Upload .exe artifact
       uses: actions/upload-artifact@v4
