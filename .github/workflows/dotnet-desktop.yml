@@ -17,10 +17,10 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore NuGet packages
-      run: nuget restore RandomCall-NET.sln
+      run: nuget restore RandomCall.sln
 
     - name: Build with MSBuild
-      run: msbuild RandomCall-NET.sln /p:Configuration=Release
+      run: msbuild RandomCall.sln /p:Configuration=Release
 
     - name: Upload .exe artifact
       uses: actions/upload-artifact@v4

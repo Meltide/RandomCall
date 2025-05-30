@@ -3,12 +3,12 @@
 <img src="https://github.com/user-attachments/assets/43b3bb7e-5dd7-45cf-993c-e968d9051d51" height="114px">
 
 # RandomCall
-![GitHub repo size](https://img.shields.io/github/repo-size/Meltide/RandomCall-NET)
-![GitHub Repo stars](https://img.shields.io/github/stars/Meltide/RandomCall-NET?style=flat)
-![GitHub branch status](https://img.shields.io/github/checks-status/Meltide/RandomCall-NET/main)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Meltide/RandomCall-NET)
-![GitHub last commit](https://img.shields.io/github/last-commit/Meltide/RandomCall-NET)
-![GitHub Created At](https://img.shields.io/github/created-at/Meltide/RandomCall-NET) 
+![GitHub repo size](https://img.shields.io/github/repo-size/Meltide/RandomCall)
+![GitHub Repo stars](https://img.shields.io/github/stars/Meltide/RandomCall?style=flat)
+![GitHub branch status](https://img.shields.io/github/checks-status/Meltide/RandomCall/main)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Meltide/RandomCall)
+![GitHub last commit](https://img.shields.io/github/last-commit/Meltide/RandomCall)
+![GitHub Created At](https://img.shields.io/github/created-at/Meltide/RandomCall) 
 
 简易的.NET随机点名器
 
