@@ -37,19 +37,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("微软雅黑 Black", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(5, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 52);
+            this.label1.Size = new System.Drawing.Size(240, 57);
             this.label1.TabIndex = 0;
-            this.label1.Text = "RandomCall";
+            this.label1.Text = "随机点名器";
             this.label1.DoubleClick += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(12, 67);
+            this.label2.Location = new System.Drawing.Point(12, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(161, 20);
             this.label2.TabIndex = 1;
@@ -57,14 +57,14 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.richTextBox1.Location = new System.Drawing.Point(16, 103);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(379, 137);
             this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "版本 1.0\n\n作者: Github@Meltide\n开源地址: https://github.com/Meltide/RandomCall";
+            this.richTextBox1.Text = "\n版本 1.0\n作者: Github@Meltide\n开源地址: https://github.com/Meltide/RandomCall";
             // 
             // AboutForm
             // 
